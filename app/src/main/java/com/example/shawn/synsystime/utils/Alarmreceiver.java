@@ -3,15 +3,18 @@ package com.example.shawn.synsystime.utils;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
-public class Alarmreceiver extends BroadcastReceiver {
-    public Alarmreceiver() {
-    }
-
+public class Alarmreceiver extends BroadcastReceiver
+{
+    private static final String TAG = "SntpClient";
     @Override
     public void onReceive(Context context, Intent intent) {
-        // TODO: This method is called when the BroadcastReceiver is receiving
-        // an Intent broadcast.
-        throw new UnsupportedOperationException("Not yet implemented");
+        if (intent.getAction().equals("arui.alarm.action")) {
+            Log.i(TAG,"Alarmreceiver received");
+            Intent i = new Intent();
+            i.setClass(context, DaemonService.class);
+            context.startService(i);
+        }
     }
 }

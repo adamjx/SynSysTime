@@ -1,5 +1,6 @@
 package com.example.shawn.synsystime;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
@@ -14,12 +15,11 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "SntpClient";
     private TextView time_tv;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        time_tv = (TextView) findViewById(R.id.time_tv);
+        /*time_tv = (TextView) findViewById(R.id.time_tv);
         new Thread(new Runnable()
         {
             @Override
@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
                     handler.sendMessage(msg);
                 }
             }
-        }).start();
+        }).start();*/
+        sendBroadcast(new Intent("arui.boot.action"));
     }
     Handler handler = new Handler()
     {
